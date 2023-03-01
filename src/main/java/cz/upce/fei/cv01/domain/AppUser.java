@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 public class AppUser {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -37,4 +38,23 @@ public class AppUser {
 
     @ManyToMany(mappedBy = "users")
     private List<Role> roles = Collections.emptyList();
+
+    public AppUser(String username, String password, Boolean active, LocalDateTime creationDate, LocalDateTime updateDate) {
+        this.username = username;
+        this.password = password;
+        this.active = active;
+        this.creationDate = creationDate;
+        this.updateDate = updateDate;
+    }
+
+    public AppUser(Long id, String username, String password, Boolean active, LocalDateTime creationDate, LocalDateTime updateDate) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.active = active;
+        this.creationDate = creationDate;
+        this.updateDate = updateDate;
+    }
+
+
 }

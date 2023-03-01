@@ -18,4 +18,7 @@ public interface AppUserRepository extends PagingAndSortingRepository<AppUser,Lo
     @Query("select ap from AppUser ap inner join ap.roles r where r = :role ")
     List<AppUser> findAllByRolesContaining(final Role role);
 
+    boolean existsByUsernameAndIdIsNot(String username, Long userId);
+
+    AppUser findByUsername(String username);
 }

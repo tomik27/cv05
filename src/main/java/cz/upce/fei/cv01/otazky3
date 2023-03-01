@@ -1,0 +1,39 @@
+Jaké známe kategorie http status kodu a k cemu slouzi?
+1xx (Informational) - Informační kódy, které indikují, že požadavek byl přijat a zpracování pokračuje.
+2xx (Successful) - Kódy pro úspěšnou odpověď, které indikují, že požadavek byl úspěšně zpracován.
+3xx (Redirection) - Kódy pro přesměrování, které informují klienta o tom, že je nutné požadavek přesměrovat na jinou adresu.
+4xx (Client Error) - Kódy pro chyby způsobené klientem, které informují o chybách v požadavku nebo o omezení přístupu.
+5xx (Server Error) - Kódy pro chyby způsobené serverem, které informují o problémech na straně serveru.
+
+Jaký je rozdíl mezi RestController a Controller
+Controller - není podle standartu rest
+Rest - vraci json, podle standartu
+
+Rest standardy:
+HTTP metody: REST využívá standardní HTTP metody (GET, POST, PUT, DELETE) k manipulaci se zdroji. Každá z těchto metod má specifický význam a použití.
+Reprezentace dat: REST definuje JSON.
+Bezstavovost: REST architektura je bezstavová, což znamená, že každý požadavek obsahuje všechny informace
+Verzovani api
+
+4)interceptor
+je v Spring frameworku třída, která umožňuje filtrovat a modifikovat požadavky a odpovědi před a po jejich zpracování kontrolery. Interceptor se registruje na úrovni konfigurace aplikace a může být použit pro různé účely, jako například ověřování přihlášení, logování požadavků, validaci vstupů a další.
+
+5) Aspěktově orientované
+Preauthorized - jake ma uzivatel role
+Muzeme urcit metodu, ktera se spusti, když se jina metoda zavola
+
+6) siforvani vs kodovani
+
+kodovani - prevedenz jazyk do jineho jazyka
+sifrovani - skryvnai
+
+7)Modelovy priklad z oblasti bezpecnosti
+
+ ned2lat  1 - 2 - 3 ,ale UID
+
+ hhtps sifrovany, ale pridat vrstvu navic, takze citliva data zasifrovat
+
+
+
+
+

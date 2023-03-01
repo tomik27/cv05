@@ -150,3 +150,41 @@ databaseChangeLog:
                   name : update_date
                   value: now()
             tableName: app_user
+
+  - changeSet:
+      id: app-user-insert-1
+      author: tomas.slaby
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: 0
+              - column:
+                  name: username
+                  value: user1
+              - column:
+                  name: password
+                  value: user1
+              - column:
+                  name: active
+                  value: true
+              - column:
+                  name: creation_date
+                  value: now()
+              - column:
+                  name: update_date
+                  value: now()
+            tableName: app_user
+
+  - changeSet:
+      id: app-user-auto-increment
+      author: tomas.slaby
+      changes:
+        - addAutoIncrement:
+            columnDataType: bigint
+            columnName: id
+            generationType: ALWAYS
+            incrementBy: 1
+            startWith: 0
+            tableName: app_user
