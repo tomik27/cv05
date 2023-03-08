@@ -1,6 +1,7 @@
 package cz.upce.fei.cv01.service;
 
 import cz.upce.fei.cv01.domain.AppUser;
+import cz.upce.fei.cv01.domain.Role;
 import cz.upce.fei.cv01.repository.AppUserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -26,8 +27,8 @@ public class JwtUserDetailsService implements UserDetailsService {
         if (appUser == null) {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }
-        //todo repair this
-        return new User(appUser.getUsername(), appUser.getPassword(), Collections.singletonList(new SimpleGrantedAuthority(appUser.getRoles().get(0).getName())));
+        //todo repair this                 appUser.getRoles().get(0).getName()
+        return new User(appUser.getUsername(), appUser.getPassword(), Collections.singletonList(new SimpleGrantedAuthority("Admin")));
     }
 
 

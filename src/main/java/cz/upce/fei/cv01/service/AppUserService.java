@@ -1,10 +1,12 @@
 package cz.upce.fei.cv01.service;
 
+import cz.upce.fei.cv01.config.WebSecurityConfig;
 import cz.upce.fei.cv01.domain.AppUser;
 import cz.upce.fei.cv01.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -17,6 +19,8 @@ import java.util.Optional;
 @Service
 public class AppUserService {
     private final AppUserRepository appUserRepository;
+    private final WebSecurityConfig webSecurityConfig;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 
     public AppUser finById(final Long id) throws ResourceNotFoundException {
@@ -24,6 +28,7 @@ public class AppUserService {
     }
 
     public AppUser create(AppUser entity) {
+        entity.setPassword(webSecurityConfig.passwordEncoder().encode(entity.getPassword()));
         return appUserRepository.save(entity);
 
     }
