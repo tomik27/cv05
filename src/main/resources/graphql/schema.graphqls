@@ -1,0 +1,36 @@
+type Query  {
+    appUser(id:ID!):AppUser
+}
+
+type AppUser {
+    id:ID!,
+    username: String!,
+    active: Boolean!,
+    creationDate: String!,
+    updateDate: String,
+    tasks:[Task!]!
+}
+
+type Task   {
+    id:ID!,
+    title:String!,
+    description: String!,
+    creationDate: String!,
+    updateDate: String
+}
+
+#! - nebude null, nullable - bez !
+
+input NewUserInput {
+    username: String!
+    password: String!
+    active: Boolean
+}
+
+type CreateUserPayload {
+    user: AppUser!
+}
+
+type Mutation {
+    createUser(input: NewUserInput!): CreateUserPayload!
+}

@@ -9,9 +9,17 @@ import cz.upce.fei.cv01.dto.AppUserInputDto;
 import cz.upce.fei.cv01.repository.AppUserRepository;
 import cz.upce.fei.cv01.service.AppUserService;
 import cz.upce.fei.cv01.service.ResourceNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -29,6 +37,8 @@ import java.util.Objects;
 @RestController
 @RequestMapping("/app-user")
 @AllArgsConstructor
+@CrossOrigin
+@Tag(name = "User controller")
 public class AppUserController {
     private final AppUserService appUserService;
     private final UserDetailsService jwtInMemoryUserDetailsService;
@@ -40,7 +50,8 @@ public class AppUserController {
     public ResponseEntity<?> getUser(@PathVariable final Long userId) throws ResourceNotFoundException {
         return ResponseEntity.ok(toDto(appUserService.finById(userId)));
     }
-
+    @SecurityRequirement(name = "NNPRO_API")
+    @PreAuthorize("hasRole('Admin') || hasRole('ROLE_Okres')")
     @PostMapping("")
     public ResponseEntity<?> createUser(@RequestBody @Validated AppUserInputDto userDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(toDto(appUserService.create(toEntity(userDto))));

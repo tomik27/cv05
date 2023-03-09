@@ -1,5 +1,8 @@
 package cz.upce.fei.cv01.domain;
 
+import cz.upce.fei.cv01.dto.AppUserDto;
+import cz.upce.fei.cv01.dto.AppUserInputDto;
+import cz.upce.fei.cv01.dto.AppUserResponseDtoV1;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -56,5 +59,7 @@ public class AppUser {
         this.updateDate = updateDate;
     }
 
-
+    public AppUserResponseDtoV1 toDto(){
+        return new AppUserResponseDtoV1(this.getId(),this.getUsername(),this.getPassword(),this.getActive(),this.getCreationDate(),this.getUpdateDate());
+    }
 }
