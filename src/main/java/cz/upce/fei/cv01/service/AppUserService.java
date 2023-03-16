@@ -4,17 +4,13 @@ import cz.upce.fei.cv01.config.WebSecurityConfig;
 import cz.upce.fei.cv01.domain.AppUser;
 import cz.upce.fei.cv01.repository.AppUserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.transaction.Transactional;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
-//neni potreba konstruktor
+//neni potreba konstruktor, vytvori construktor injection
 @AllArgsConstructor
 @Service
 public class AppUserService {
@@ -23,7 +19,7 @@ public class AppUserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 
-    public AppUser finById(final Long id) throws ResourceNotFoundException {
+    public AppUser findById(final Long id) throws ResourceNotFoundException {
        return appUserRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException());
     }
 

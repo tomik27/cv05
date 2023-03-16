@@ -1,7 +1,5 @@
 package cz.upce.fei.cv01.graphql;
 
-import cz.upce.fei.cv01.domain.AppUser;
-import cz.upce.fei.cv01.dto.AppUserInputDto;
 import cz.upce.fei.cv01.dto.AppUserResponseDtoV1;
 import cz.upce.fei.cv01.service.AppUserService;
 import cz.upce.fei.cv01.service.ResourceNotFoundException;
@@ -17,7 +15,7 @@ public class AppUserQLController {
 
     @QueryMapping
     public AppUserResponseDtoV1 appUser(@Argument final Long id) throws ResourceNotFoundException {
-        return appUserService.finById(id).toDto();
+        return appUserService.findById(id).toDto();
     }
 
 }

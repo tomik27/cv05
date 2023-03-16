@@ -9,11 +9,6 @@ import cz.upce.fei.cv01.dto.AppUserInputDto;
 import cz.upce.fei.cv01.repository.AppUserRepository;
 import cz.upce.fei.cv01.service.AppUserService;
 import cz.upce.fei.cv01.service.ResourceNotFoundException;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -28,10 +23,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
 @RestController
@@ -48,7 +40,7 @@ public class AppUserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<?> getUser(@PathVariable final Long userId) throws ResourceNotFoundException {
-        return ResponseEntity.ok(toDto(appUserService.finById(userId)));
+        return ResponseEntity.ok(toDto(appUserService.findById(userId)));
     }
     @SecurityRequirement(name = "NNPRO_API")
     @PreAuthorize("hasRole('Admin') || hasRole('ROLE_Okres')")

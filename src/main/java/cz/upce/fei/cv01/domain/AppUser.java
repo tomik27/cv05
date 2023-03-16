@@ -4,6 +4,7 @@ import cz.upce.fei.cv01.dto.AppUserDto;
 import cz.upce.fei.cv01.dto.AppUserInputDto;
 import cz.upce.fei.cv01.dto.AppUserResponseDtoV1;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -36,10 +37,14 @@ public class AppUser {
     @Column
     private LocalDateTime updateDate;
 
+
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    @EqualsAndHashCode.Exclude
     private List<Task> tasks= Collections.emptyList();
 
+
     @ManyToMany(mappedBy = "users")
+    @EqualsAndHashCode.Exclude
     private List<Role> roles = Collections.emptyList();
 
     public AppUser(String username, String password, Boolean active, LocalDateTime creationDate, LocalDateTime updateDate) {
